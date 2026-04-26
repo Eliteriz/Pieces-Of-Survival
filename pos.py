@@ -51,6 +51,43 @@ RECIPES = idata.get("recipes", {})
 PLACES = idata.get("places", {})
 BESTIARY = idata.get("bestiary", {})
 
+def load_addons(paths: List[str]):
+    global ITEMS, RECIPES, PLACES, BESTIARY
+    
+    ITEMS.clear()
+    RECIPES.clear()
+    PLACES.clear()
+    BESTIARY.clear()
+
+    for path in paths:
+        data = load_json(path, {})
+        
+        for item_id, item_info in data.get("items", {}).items():
+            if item_id in ITEMS:
+                print(f"⚠️  [Conflict] '{item_id}' already exists. Skipping version in {path} {RED}[BAD]{RESET}")
+            else:
+                ITEMS[item_id] = item_info
+                print(f"[ITEMS] Appended: {item_id} {GREEN}[OK]{RESET}")
+                time.sleep(random.uniform(0.01, 0.05))
+
+        for rec_id, rec_info in data.get("recipes", {}).items():
+            if rec_id in RECIPES:
+                print(f"⚠️  [Conflict] Recipe '{rec_id}' already exists. Skipping {path} {RED}[BAD]{RESET}")
+            else:
+                RECIPES[rec_id] = rec_info
+                print(f"[RECIPES] Appended: {rec_id} {GREEN}[OK]{RESET}")
+                time.sleep(random.uniform(0.01, 0.05))
+         
+        for place_id, place_info in data.get("places", {}).items():
+            if place_id in PLACES:
+                print(f"⚠️  [Conflict] Place '{place_id}' already exists. Skipping {path} {RED}[BAD]{RESET}")
+            else:
+                PLACES[place_id] = place_info
+                print(f"[PLACES] Appended: {place_id} {GREEN}[OK]{RESET}")
+                time.sleep(random.uniform(0.01, 0.05))
+                
+    print(f"{GREEN}Successfully synchronized {len(paths)} source(s).{RESET}")
+    input("Enter to continue... [READY]")
 
 def fmt(label: str, value: str) -> str:
     return f"{label}{value}{RESET}"
@@ -561,40 +598,81 @@ def start_screen() -> Player:
     global CURRENT_MOD_NAME
     audio.play_bgm("main_menu.mp3")
     clear_screen()
+    
     if not os.path.exists("mods"):
         os.makedirs("mods")
     
     mods = [f for f in os.listdir("mods") if f.endswith(".mpos")]
-    
-    print(f"{GREEN}{figlet_format('Pieces of Survival')}{RESET}")
-    print("Select World / Mod:")
-    print("0. Vanilla")
-    for i, m in enumerate(mods, 1):
-        print(f"{i}. {m.replace('.mpos', '')}")
-        
-    m_choice = input_int(">> ", valid=range(0, len(mods) + 1))
-    
-    if m_choice == 0:
-        CURRENT_MOD_NAME = "vanilla"
-    else:
-        selected_file = mods[m_choice - 1]
-        CURRENT_MOD_NAME = selected_file.replace(".mpos", "")
-        load_mod_data(selected_file)
+    selected_indices = [0]    
+    while True:
+        clear_screen()
+        print(f"{GREEN}{figlet_format('Pieces of Survival')}{RESET}")
+        print(f"{CYAN}--- MOD / ADDON SELECTOR ---{RESET}")
+        print("Select your packs (Type 'done' to start game):")
 
+        v_status = "X" if 0 in selected_indices else " "
+        print(f"0. [{v_status}] Vanilla (Core Game)")
+        
+        for i, m in enumerate(mods, 1):
+            status = "X" if i in selected_indices else " "
+            print(f"{i}. [{status}] {m.replace('.mpos', '')}")
+            
+        choice = input("\nToggle number or type 'done' >> ").lower().strip()
+        
+        if choice == 'done':
+            if not selected_indices:
+                print(f"{YELLOW}Selecting Vanilla by default...{RESET}")
+                selected_indices = [0]
+            break
+            
+        try:
+            idx = int(choice)
+            if 0 <= idx <= len(mods):
+                if idx in selected_indices:
+                    selected_indices.remove(idx)
+                else:
+                    selected_indices.append(idx)
+            else:
+                print(f"{RED}Out of range.{RESET}")
+                time.sleep(0.5)
+        except ValueError:
+            print(f"{RED}Please enter a number or 'done'.{RESET}")
+            time.sleep(0.5)
+
+    selected_indices.sort()
+    
+    paths_to_load = []
+    mod_names = []
+    
+    for idx in selected_indices:
+        if idx == 0:
+            paths_to_load.append(IDATA_PATH)
+            mod_names.append("vanilla")
+        else:
+            filename = mods[idx-1]
+            paths_to_load.append(os.path.join("mods", filename))
+            mod_names.append(filename.replace(".mpos", ""))
+
+    CURRENT_MOD_NAME = "_".join(mod_names)
+    load_addons(paths_to_load)
     saves = list_saves(CURRENT_MOD_NAME) 
     clear_screen()
-    print(f"{CYAN}--- {CURRENT_MOD_NAME.upper()} SAVES ---{RESET}")
-    for i, (name, _) in enumerate(saves, 1):
-        print(f"{i}. {name}")
-    print(f"{len(saves) + 1}. New Character")
-
-    choice = input("\nChoose save >> ").strip()
+    print(f"{PURPLE}--- {CURRENT_MOD_NAME.upper()} SAVES ---{RESET}")
+    if not saves:
+        print("No saves found for this combination.")
+    else:
+        for i, (name, _) in enumerate(saves, 1):
+            print(f"{i}. {name}")
     
-    if choice.isdigit() and 1 <= int(choice) <= len(saves):
-        return load_player(saves[int(choice) - 1][0])
+    print(f"{len(saves) + 1}. Create New Character")
+    save_choice = input("\nChoose save >> ").strip()
+    if save_choice.isdigit() and 1 <= int(save_choice) <= len(saves):
+        return load_player(saves[int(save_choice) - 1][0])
 
-    name = input("Username: ").strip() or "Player"
-    p = Player(name=name)
+    name = input("Enter Character Name: ").strip() or "Player"
+    start_loc = list(PLACES.keys())[0] if PLACES else "Forest"
+    
+    p = Player(name=name, location=start_loc)
     p.save() 
     return p
 
