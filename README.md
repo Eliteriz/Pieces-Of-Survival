@@ -13,7 +13,7 @@ pkg update && pkg upgrade
 ```bash
 pkg install git python
 ```
-• type 'Y' again
+• type 'Y' again.
 3. After setup, type this:
 ```bash
 git clone [https://github.com/Eliteriz/Pieces-Of-Survival.git](https://github.com/Eliteriz/Pieces-Of-Survival.git)
