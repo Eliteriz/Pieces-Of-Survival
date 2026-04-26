@@ -1,0 +1,118 @@
+
+{
+  "items": {
+    "Twig": {"category": "Materials", "researched": false},
+    "Pebble": {"category": "Materials", "researched": false},
+    "Branch": {"category": "Materials", "researched": false},
+    "Coal": {"category": "Materials", "researched": false},
+    "Cracked Stones": {"category": "Materials", "researched": false},
+    "Clay": {"category": "Materials", "researched": false},
+    "Brick": {"category": "Materials", "researched": false},
+    "Stone": {"category": "Materials", "researched": false},
+
+    "Sharp Twig": {"category": "Tools", "tool_type": "pickaxe", "tier": 1, "researched": false, "durability": 20},
+    "Sharp Pebble": {"category": "Tools", "tool_type": "pickaxe", "tier": 1, "researched": false, "durability": 40},
+    "Bundle Torch": {"category": "Tools", "researched": false},
+    "Unlit Torch": {"category": "Tools", "researched": false},
+    "Torch": {"category": "Tools", "researched": false},
+    "Fish Spear": {"category": "Tools", "tool_type": "fishing", "tier": 1, "researched": false, "durability": 50},
+
+    "Campfire": {"category": "Stations", "researched": false},
+    "Furnace": {"category": "Stations", "researched": false},
+
+    "Salmon": {"category": "Preserved Food", "researched": false},
+    "Tuna": {"category": "Preserved Food", "researched": false},
+    "Salmon on a stick": {"category": "Food", "researched": false, "hunger": 10, "health_restore": 0},
+    "Tuna on a stick": {"category": "Food", "researched": false, "hunger": 10, "health_restore": 0},
+    "Cooked Salmon": {"category": "Food", "researched": false, "hunger": 30, "health_restore": 30},
+    "Cooked Tuna": {"category": "Food", "researched": false, "hunger": 30, "health_restore": 30}
+  },
+
+  "recipes": {
+    "Sharp Twig": {
+      "inputs": {"Twig": 2},
+      "station": null
+    },
+    "Bundle Torch": {
+      "inputs": {"Twig": 10},
+      "station": null
+    },
+    "Unlit Torch": {
+      "inputs": {"Branch": 1, "Coal": 1},
+      "station": null
+    },
+    "Torch": {
+      "inputs": {"Unlit Torch": 1},
+      "station": ["Furnace", "Campfire"]
+    },
+    "Sharp Pebble": {
+      "inputs": {"Sharp Twig": 1, "Pebble": 1},
+      "station": null,
+      "durability_cost": 10
+    },
+    "Brick": {
+      "inputs": {"Clay": 1},
+      "station": ["Furnace", "Campfire"]
+    },
+    "Fish Spear": {
+      "inputs": {"Branch": 1, "Sharp Pebble": 1},
+      "station": null,
+      "durability_cost": 10
+    },
+    "Campfire": {
+      "inputs": {"Bundle Torch": 1, "Sharp Pebble": 2, "Pebble": 10},
+      "station": null,
+      "durability_cost": 20
+    },
+    "Furnace": {
+      "inputs": {"Brick": 30, "Coal": 10, "Torch": 1},
+      "station": null
+    },
+    "Salmon on a stick": {
+      "inputs": {"Salmon": 1, "Sharp Twig": 1},
+      "station": null
+    },
+    "Tuna on a stick": {
+      "inputs": {"Tuna": 1, "Sharp Twig": 1},
+      "station": null
+    },
+    "Cooked Salmon": {
+      "inputs": {"Salmon on a stick": 1},
+      "station": ["Furnace", "Campfire"]
+    },
+    "Cooked Tuna": {
+      "inputs": {"Tuna on a stick": 1},
+      "station": ["Furnace", "Campfire"]
+    }
+  },
+
+  "places": {
+    "Forest": {
+      "bgm": "forest_ambience.mp3",
+      "drops": ["Twig", "Pebble", "Branch"],
+      "w_drop": [65, 25, 10],
+      "required_tooltier": null
+    },
+    "River": {
+      "drops": ["Tuna", "Salmon"],
+      "w_drop": [60, 40],
+      "required_tooltier": ["fishing", 1],
+      "cost_tick": 2
+    },
+    "Lake": {
+      "drops": ["Clay", "Stone"],
+      "w_drop": [60, 40],
+      "required_tooltier": null
+    },
+    "Mountain Outcrops": {
+      "drops": ["Cracked Stones", "Coal"],
+      "w_drop": [70, 30],
+      "required_tooltier": ["pickaxe", 1],
+      "cost_tick": 2
+    },
+    "Base": {
+      "drops": [],
+      "required_tooltier": null
+    }
+  }
+}
