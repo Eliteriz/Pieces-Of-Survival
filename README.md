@@ -52,18 +52,18 @@ Your `.mpos` file should follow this template:
 }
 ```
 #### Template Details:
-- Items:
-•` tool_type` & `tier`: Required for tools to unlock specific places.
-• `durability`: Starting health of the tool.
-• `hunger` & `health_restore`: Used only for Food category.
-- Recipes:
-• `inputs: {"ItemName": Quantity}.`
-• `station`: A list of required stations ["Station A", "Station B"] or null.
-• `durability_cost`: Amount of durability consumed from the tool used to craft it.
-- Places:
-• `w_drop`: Weighted drop rates (must match the order of the drops list).
-• `required_tooltier`: Format is ["type", tier] or null.
-• `cost_tick:` How much "time" or stamina it costs to forage here.
+1. Items:
+- `tool_type` & `tier`: Required for tools to unlock specific places.
+- `durability`: Starting health of the tool.
+- `hunger` & `health_restore`: Used only for Food category.
+2. Recipes:
+- `inputs: {"ItemName": Quantity}.`
+- `station`: A list of required stations ["Station A", "Station B"] or null.
+- `durability_cost`: Amount of durability consumed from the tool used to craft it.
+3. Places:
+- `w_drop`: Weighted drop rates (must match the order of the drops list).
+- `required_tooltier`: Format is ["type", tier] or null.
+- `cost_tick:` How much "time" or stamina it costs to forage here.
 
 ---
 
