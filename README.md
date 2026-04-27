@@ -71,7 +71,7 @@ Your `.mpos` file should follow this template:
 1. Download **Termux** in F-Droid (Playstore is outdated)
 2. Open Termux and setup it with:
 ```bash
-> pkg update && pkg upgrade
+pkg update && pkg upgrade
 ```
 - type 'Y' in: "Do you to continue [Y/n]"
 - once done:
@@ -82,11 +82,11 @@ pkg install git python
 
 3. After setup, type this:
 ```bash
-> git clone [https://github.com/Eliteriz/Pieces-Of-Survival.git](https://github.com/Eliteriz/Pieces-Of-Survival.git)
+git clone [https://github.com/Eliteriz/Pieces-Of-Survival.git](https://github.com/Eliteriz/Pieces-Of-Survival.git)
 
-> cd Pieces-Of-Survival
+cd Pieces-Of-Survival
 
-> python pos.py
+python pos.py
 ```
 
 ## How to Run (PC - Windows, Linux, macOS)
@@ -94,11 +94,11 @@ pkg install git python
 2. Open your Terminal (or PowerShell/CMD on Windows).
 3. Clone and run:
 ```bash
-> git clone [https://github.com/Eliteriz/Pieces-Of-Survival.git](https://github.com/Eliteriz/Pieces-Of-Survival.git)
+git clone [https://github.com/Eliteriz/Pieces-Of-Survival.git](https://github.com/Eliteriz/Pieces-Of-Survival.git)
 
-> cd Pieces-Of-Survival
+cd Pieces-Of-Survival
 
-> python pos.py
+python pos.py
 ```
 
 ---
