@@ -73,12 +73,12 @@ Your `.mpos` file should follow this template:
 ```bash
 pkg update && pkg upgrade
 ```
-- type 'Y' in: "Do you to continue [Y/n]"
+- type 'Y' in: "Do you want to continue? [Y/n]:"
 - once done:
 ```bash
 pkg install git python
 ```
-- type 'Y' again in "Do you to continue [Y/n]"
+- type 'Y' again in "Do you want to continue? [Y/n]:"
 
 3. After setup, type this:
 ```bash
