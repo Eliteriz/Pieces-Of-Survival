@@ -1,5 +1,7 @@
 import os
 
+CURRENT_MOD_NAME = "vanilla"
+
 DATA_DIR = "data"
 IDATA_PATH = os.path.join("idata.json")
 

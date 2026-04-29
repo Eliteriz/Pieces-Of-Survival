@@ -3,7 +3,7 @@ from dataclasses import dataclass, field
 from typing import Dict, List, Optional, Tuple
 
 from helpers import game_config as cfg
-from helpers import game_utils
+from helpers import game_utils as utils
 
 @dataclass
 class Player:
