@@ -1,0 +1,86 @@
+{
+  "enemies": {
+    "Goblin": {
+      "health": 20,
+      "damage": 5,
+      "attack_speed": 1.5,
+      "armor": 0,
+      "skills": ["Scratch", "Stab"],
+      "ai_pattern": "aggressive"
+    },
+    "Orc": {
+      "health": 40,
+      "damage": 12,
+      "attack_speed": 2.0,
+      "armor": 5,
+      "skills": ["Smash", "Roar"],
+      "ai_pattern": "aggressive"
+    },
+    "Wolf": {
+      "health": 25,
+      "damage": 8,
+      "attack_speed": 1.2,
+      "armor": 0,
+      "skills": ["Bite", "Pounce"],
+      "ai_pattern": "aggressive"
+    },
+    "Skeleton": {
+      "health": 15,
+      "damage": 6,
+      "attack_speed": 1.8,
+      "armor": 3,
+      "skills": ["Slash", "Rattle"],
+      "ai_pattern": "tactical"
+    },
+    "Slime": {
+      "health": 10,
+      "damage": 2,
+      "attack_speed": 0.8,
+      "armor": 0,
+      "skills": ["Absorb", "Drip"],
+      "ai_pattern": "passive"
+    }
+  },
+  "skills": {
+    "Scratch": {
+      "damage_multiplier": 0.8,
+      "description": "A quick scratch attack"
+    },
+    "Stab": {
+      "damage_multiplier": 1.2,
+      "description": "A piercing stab"
+    },
+    "Smash": {
+      "damage_multiplier": 1.5,
+      "description": "A powerful smash"
+    },
+    "Roar": {
+      "damage_multiplier": 0.5,
+      "description": "A terrifying roar"
+    },
+    "Bite": {
+      "damage_multiplier": 1.1,
+      "description": "A fierce bite"
+    },
+    "Pounce": {
+      "damage_multiplier": 1.3,
+      "description": "A devastating pounce"
+    },
+    "Slash": {
+      "damage_multiplier": 1.0,
+      "description": "A skeletal slash"
+    },
+    "Rattle": {
+      "damage_multiplier": 0.6,
+      "description": "Rattles its bones"
+    },
+    "Absorb": {
+      "damage_multiplier": 0.5,
+      "description": "Absorbs incoming damage"
+    },
+    "Drip": {
+      "damage_multiplier": 0.7,
+      "description": "Acidic drips"
+    }
+  }
+}
