@@ -9,12 +9,12 @@
     "Brick": {"category": "Materials", "researched": false},
     "Stone": {"category": "Materials", "researched": false},
 
-    "Sharp Twig": {"category": "Tools", "tool_type": "pickaxe", "tier": 1, "researched": false, "durability": 20},
-    "Sharp Pebble": {"category": "Tools", "tool_type": "pickaxe", "tier": 1, "researched": false, "durability": 40},
-    "Bundle Torch": {"category": "Tools", "researched": false},
-    "Unlit Torch": {"category": "Tools", "researched": false},
-    "Torch": {"category": "Tools", "researched": false},
-    "Fish Spear": {"category": "Tools", "tool_type": "fishing", "tier": 1, "researched": false, "durability": 50},
+    "Sharp Twig": {"category": "Tools", "tool_type": "pickaxe", "tier": 1, "researched": false, "durability": 20, "attack_speed": 0.0, "damage": 0, "charge_skill": null, "pierce_chance": 0},
+    "Sharp Pebble": {"category": "Tools", "tool_type": "pickaxe", "tier": 1, "researched": false, "durability": 40, "attack_speed": 0.0, "damage": 0, "charge_skill": null, "pierce_chance": 0},
+    "Bundle Torch": {"category": "Tools", "researched": false, "attack_speed": 0.0, "damage": 0, "charge_skill": null, "pierce_chance": 0},
+    "Unlit Torch": {"category": "Tools", "researched": false, "attack_speed": 0.0, "damage": 0, "charge_skill": null, "pierce_chance": 0},
+    "Torch": {"category": "Tools", "researched": false, "attack_speed": 0.6, "damage": 3, "charge_skill": "Ignite", "pierce_chance": 0.1},
+    "Fish Spear": {"category": "Tools", "tool_type": "fishing", "tier": 1, "researched": false, "durability": 50, "attack_speed": 1.2, "damage": 6, "charge_skill": "Pierce", "pierce_chance": 0.4},
 
     "Campfire": {"category": "Stations", "researched": false},
     "Furnace": {"category": "Stations", "researched": false},
@@ -24,7 +24,21 @@
     "Salmon on a stick": {"category": "Food", "researched": false, "hunger": 10, "health_restore": 0},
     "Tuna on a stick": {"category": "Food", "researched": false, "hunger": 10, "health_restore": 0},
     "Cooked Salmon": {"category": "Food", "researched": false, "hunger": 30, "health_restore": 30},
-    "Cooked Tuna": {"category": "Food", "researched": false, "hunger": 30, "health_restore": 30}
+    "Cooked Tuna": {"category": "Food", "researched": false, "hunger": 30, "health_restore": 30},
+
+    "Rusty Dagger": {"category": "Weapons", "researched": false, "durability": 60, "attack_speed": 1.8, "damage": 4, "charge_skill": "Quick Slash", "pierce_chance": 0.2},
+    "Iron Sword": {"category": "Weapons", "researched": false, "durability": 100, "attack_speed": 1.2, "damage": 8, "charge_skill": "Heavy Strike", "pierce_chance": 0.15},
+    "Steel Greatsword": {"category": "Weapons", "researched": false, "durability": 120, "attack_speed": 0.7, "damage": 15, "charge_skill": "Devastating Blow", "pierce_chance": 0.1},
+    "Wooden Club": {"category": "Weapons", "researched": false, "durability": 40, "attack_speed": 1.0, "damage": 6, "charge_skill": "Crushing Blow", "pierce_chance": 0.05}
+  },
+
+  "weapon_skills": {
+    "Quick Slash": {"damage_multiplier": 1.5, "description": "A quick and precise slash"},
+    "Heavy Strike": {"damage_multiplier": 2.0, "description": "A powerful overhead strike"},
+    "Devastating Blow": {"damage_multiplier": 3.0, "description": "An earth-shaking blow"},
+    "Crushing Blow": {"damage_multiplier": 2.2, "description": "A crushing strike"},
+    "Ignite": {"damage_multiplier": 1.2, "description": "Ignite your torch"},
+    "Pierce": {"damage_multiplier": 1.8, "description": "A piercing thrust"}
   },
 
   "recipes": {
@@ -82,6 +96,22 @@
     "Cooked Tuna": {
       "inputs": {"Tuna on a stick": 1},
       "station": ["Furnace", "Campfire"]
+    },
+    "Rusty Dagger": {
+      "inputs": {"Iron Ore": 5, "Branch": 1},
+      "station": ["Furnace"]
+    },
+    "Iron Sword": {
+      "inputs": {"Iron Ore": 15, "Coal": 5},
+      "station": ["Furnace"]
+    },
+    "Steel Greatsword": {
+      "inputs": {"Steel Ingot": 10, "Coal": 10},
+      "station": ["Furnace"]
+    },
+    "Wooden Club": {
+      "inputs": {"Branch": 3, "Stone": 2},
+      "station": null
     }
   },
 
@@ -90,28 +120,33 @@
       "bgm": "forest_ambience.mp3",
       "drops": ["Twig", "Pebble", "Branch"],
       "w_drop": [65, 25, 10],
-      "required_tooltier": null
+      "required_tooltier": null,
+      "enemies": ["Goblin", "Slime"]
     },
     "River": {
       "drops": ["Tuna", "Salmon"],
       "w_drop": [60, 40],
       "required_tooltier": ["fishing", 1],
-      "cost_tick": 2
+      "cost_tick": 2,
+      "enemies": ["Wolf"]
     },
     "Lake": {
       "drops": ["Clay", "Stone"],
       "w_drop": [60, 40],
-      "required_tooltier": null
+      "required_tooltier": null,
+      "enemies": ["Skeleton"]
     },
     "Mountain Outcrops": {
       "drops": ["Cracked Stones", "Coal"],
       "w_drop": [70, 30],
       "required_tooltier": ["pickaxe", 1],
-      "cost_tick": 2
+      "cost_tick": 2,
+      "enemies": ["Orc"]
     },
     "Base": {
       "drops": [],
-      "required_tooltier": null
+      "required_tooltier": null,
+      "enemies": []
     }
   }
 }
