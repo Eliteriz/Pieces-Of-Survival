@@ -4,6 +4,7 @@ CURRENT_MOD_NAME = "vanilla"
 
 DATA_DIR = "data"
 IDATA_PATH = os.path.join("idata.json")
+EDATA_PATH = os.path.join("edata.json")
 
 RESET = "\033[0m"
 GREEN = "\033[92m"
@@ -19,3 +20,7 @@ ITEMS = {}
 RECIPES = {}
 PLACES = {}
 BESTIARY = {}
+ENEMIES = {}
+ENEMY_SKILLS = {}
+WEAPON_SKILLS = {}
+EQUIPPED_WEAPON = None
